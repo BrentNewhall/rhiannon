@@ -14,5 +14,9 @@
 }
 
 .screenshot {
-  width: 100%;
+  height: 70vh;
+}
+
+footer {
+  height: 20vh;
 }

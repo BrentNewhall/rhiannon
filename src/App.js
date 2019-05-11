@@ -40,11 +40,18 @@ class App extends Component {
           Rhiannon        
         </header>
         <img alt="screenshot" src={this.state.screenshot} className="screenshot" />
-        <footer>
-          <button className="btn" onClick={() => this.answerClicked(0)}>{this.state.answers[0]}</button>
-          <button className="btn" onClick={() => this.answerClicked(1)}>{this.state.answers[1]}</button>
-          <button className="btn" onClick={() => this.answerClicked(2)}>{this.state.answers[2]}</button>
-          <button className="btn" onClick={() => this.answerClicked(3)}>{this.state.answers[3]}</button>
+        <footer className="container">
+        <div className="row">
+          <div className="col m12 question">
+            What's wrong here?
+          </div>
+        </div>
+        <div className="row">
+          <button className="btn col m6" onClick={() => this.answerClicked(0)}>{this.state.answers[0]}</button>
+          <button className="btn col m6" onClick={() => this.answerClicked(1)}>{this.state.answers[1]}</button>
+          <button className="btn col m6" onClick={() => this.answerClicked(2)}>{this.state.answers[2]}</button>
+          <button className="btn col m6" onClick={() => this.answerClicked(3)}>{this.state.answers[3]}</button>
+        </div>
         </footer>
       </div>
     );
