@@ -10,7 +10,7 @@ export const prompts = [
         correctAnswer: 0,
     },
     {
-        image: 'screenshot0.png',
+        image: 'screenshot1.png',
         answers: [
             'Needs to close a curly brace',
             'Too many closing curly braces',
