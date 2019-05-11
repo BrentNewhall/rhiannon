@@ -13,51 +13,68 @@ class App extends Component {
       answers: [],
       buttonColor: ['cyan','cyan','cyan','cyan'],
       correctAnswer: 0,
-      question: "What's wrong here?",
+      question: "",
     }
     this.setPrompt = this.setPrompt.bind( this );
+    this.nextPrompt = this.nextPrompt.bind( this );
     this.answerClicked = this.answerClicked.bind( this );
   }
 
   componentDidMount() {
-    this.setPrompt();
+    this.setPrompt( 0 );
   }
 
-  setPrompt() {
-    if( this.state.promptIndex >= 0  &&  this.state.promptIndex < prompts.length ) {
+  setPrompt( newIndex ) {
+    if( newIndex >= 0  &&  newIndex < prompts.length ) {
       this.setState( {
-        screenshot: '/images/screenshots/' + prompts[this.state.promptIndex].image,
-        answers: prompts[this.state.promptIndex].answers,
-        correctAnswer: prompts[this.state.promptIndex].correctAnswer,
+        promptIndex: newIndex,
+        screenshot: '/images/screenshots/' + prompts[newIndex].image,
+        answers: prompts[newIndex].answers,
+        correctAnswer: prompts[newIndex].correctAnswer,
+        buttonColor: ['cyan','cyan','cyan','cyan'],
+        question: "What's wrong here?",
       });
     }
   }
 
-  answerClicked( answer ) {
-    console.log( "Clicked on", answer );
+  getColors( playerAnswer, correctAnswer ) {
     let colors = [];
     for( let i = 0; i < 4; i++ ) {
-      if( i === this.state.correctAnswer ) {
+      if( i === correctAnswer ) {
         colors.push( 'green' );
       }
-      else if( i === answer ) {
+      else if( i === playerAnswer ) {
         colors.push( 'cyan' );
       }
       else {
         colors.push( 'grey' );
       }
     }
+    return colors;
+  }
+
+  nextPrompt() {
+    if( this.state.promptIndex < prompts.length - 1 ) {
+      this.setPrompt( this.state.promptIndex + 1 );
+    }
+  }
+
+  answerClicked( answer ) {
+    let colors = this.getColors( answer, this.state.correctAnswer );
     if( answer === this.state.correctAnswer ) {
       this.setState( {
         question: "That's right!",
         buttonColor: colors,
-      })
+      });
     }
     else {
       this.setState( {
         question: "Nope!",
         buttonColor: colors,
-      })
+      });
+    }
+    if( this.state.promptIndex < prompts.length - 1 ) {
+      setTimeout( this.nextPrompt, 3000 );
     }
   }
 
