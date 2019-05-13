@@ -17,6 +17,10 @@
   height: 70vh;
 }
 
+.code {
+  text-align: left;
+}
+
 footer {
   height: 20vh;
 }

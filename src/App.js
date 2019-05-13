@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { dark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 import prompts from './prompts';
 
@@ -14,6 +16,7 @@ class App extends Component {
       buttonColor: ['cyan','cyan','cyan','cyan'],
       correctAnswer: 0,
       question: "",
+      code: "",
     }
     this.setPrompt = this.setPrompt.bind( this );
     this.nextPrompt = this.nextPrompt.bind( this );
@@ -29,6 +32,7 @@ class App extends Component {
       this.setState( {
         promptIndex: newIndex,
         screenshot: 'images/screenshots/' + prompts[newIndex].image,
+        code: prompts[newIndex].code,
         answers: prompts[newIndex].answers,
         correctAnswer: prompts[newIndex].correctAnswer,
         buttonColor: ['cyan','cyan','cyan','cyan'],
@@ -84,7 +88,10 @@ class App extends Component {
         <header className="App-header">
           Rhiannon        
         </header>
-        <img alt="screenshot" src={this.state.screenshot} className="screenshot" />
+        {/* <img alt="screenshot" src={this.state.screenshot} className="screenshot" /> */}
+        <div className="container code">
+          <SyntaxHighlighter language='javascript' style={dark}>{this.state.code}</SyntaxHighlighter>
+        </div>
         <footer className="container">
         <div className="row">
           <div className="col m12 question">
