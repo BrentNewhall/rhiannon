@@ -37,7 +37,7 @@ class App extends Component {
         answers: prompts[newIndex].answers,
         correctAnswer: prompts[newIndex].correctAnswer,
         buttonColor: ['cyan','cyan','cyan','cyan'],
-        question: "How this be fixed?",
+        question: "How should this be fixed?",
         countdown: 10,
       });
     }
