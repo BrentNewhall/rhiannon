@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { dark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { irBlack } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 import prompts from './prompts';
 
@@ -37,7 +37,7 @@ class App extends Component {
         answers: prompts[newIndex].answers,
         correctAnswer: prompts[newIndex].correctAnswer,
         buttonColor: ['cyan','cyan','cyan','cyan'],
-        question: "What's wrong here?",
+        question: "How this be fixed?",
         countdown: 10,
       });
     }
@@ -113,7 +113,7 @@ class App extends Component {
           Rhiannon        
         </header>
         <div className="container code">
-          <SyntaxHighlighter language='javascript' style={dark}>{this.state.code}</SyntaxHighlighter>
+          <SyntaxHighlighter language='javascript' style={irBlack}>{this.state.code}</SyntaxHighlighter>
         </div>
         <footer className="container">
           <div className="row">
