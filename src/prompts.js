@@ -12,7 +12,7 @@ export const prompts = [
     {
         code: "employee = {\n  firstName: 'Alan',\n  lastName: 'Davies'\n  phoneNumber: '301-248-9325',\n  birthDate: '1972-03-28'\n}",
         answers: [
-            'Close a curly brace',
+            'Add a curly brace',
             'Remove a curly brace',
             'Add a comma',
             'Change = to =>',
