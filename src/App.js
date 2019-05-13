@@ -9,7 +9,6 @@ class App extends Component {
   constructor( props ) {
     super( props );
     this.state = {
-      screenshot: '',
       promptIndex: 0,
       prompt: {},
       answers: [],
@@ -34,7 +33,6 @@ class App extends Component {
     if( newIndex >= 0  &&  newIndex < prompts.length ) {
       this.setState( {
         promptIndex: newIndex,
-        screenshot: 'images/screenshots/' + prompts[newIndex].image,
         code: prompts[newIndex].code,
         answers: prompts[newIndex].answers,
         correctAnswer: prompts[newIndex].correctAnswer,
@@ -97,13 +95,21 @@ class App extends Component {
     }
   }
 
+  renderButton( num ) {
+    return <button className={"btn col m6 " + this.state.buttonColor[num]}
+      onClick={() => this.answerClicked(num)}>{this.state.answers[num]}</button>
+  }
+
+  renderButtons() {
+    return [0, 1, 2, 3].map( (btn, index) => { return this.renderButton(index) } );
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
           Rhiannon        
         </header>
-        {/* <img alt="screenshot" src={this.state.screenshot} className="screenshot" /> */}
         <div className="container code">
           <SyntaxHighlighter language='javascript' style={dark}>{this.state.code}</SyntaxHighlighter>
         </div>
@@ -114,14 +120,15 @@ class App extends Component {
             </div>
           </div>
           <div className="row">
-            <button className={"btn col m6 " + this.state.buttonColor[0]} onClick={() => this.answerClicked(0)}>{this.state.answers[0]}</button>
-            <button className={"btn col m6 " + this.state.buttonColor[1]} onClick={() => this.answerClicked(1)}>{this.state.answers[1]}</button>
-            <button className={"btn col m6 " + this.state.buttonColor[2]} onClick={() => this.answerClicked(2)}>{this.state.answers[2]}</button>
-            <button className={"btn col m6 " + this.state.buttonColor[3]} onClick={() => this.answerClicked(3)}>{this.state.answers[3]}</button>
+            {this.renderButtons()}
           </div>
         </footer>
         <div className="score">
-          <span className="correct">{this.state.numCorrect}</span> / {prompts.length} <span className="percentCorrect">({parseInt(this.state.numCorrect / prompts.length * 100)}%)</span>
+          <span className="correct">{this.state.numCorrect}</span> /
+          {prompts.length}
+          <span className="percentCorrect">
+            ({parseInt(this.state.numCorrect / prompts.length * 100)}%)
+          </span>
         </div>
         <div className="countdown">
           {this.state.countdown}
