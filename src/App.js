@@ -124,8 +124,8 @@ class App extends Component {
           </div>
         </footer>
         <div className="score">
-          <span className="correct">{this.state.numCorrect}</span> /
-          {prompts.length}
+          <span className="correct">{this.state.numCorrect}</span> /&nbsp;
+          {prompts.length}&nbsp;
           <span className="percentCorrect">
             ({parseInt(this.state.numCorrect / prompts.length * 100)}%)
           </span>
