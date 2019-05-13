@@ -61,7 +61,7 @@ class App extends Component {
   }
 
   promptCountdown( countdown ) {
-    if( countdown === 0 ) {
+    if( countdown <= 1 ) {
       this.nextPrompt();
     }
     else {
@@ -92,8 +92,8 @@ class App extends Component {
       });
     }
     if( this.state.promptIndex < prompts.length - 1 ) {
-      this.setState( { countdown: 5 } );
-      setTimeout( () => { this.promptCountdown( 5 ) }, 1000 );
+      this.setState( { countdown: 3 } );
+      setTimeout( () => { this.promptCountdown( 3 ) }, 1000 );
     }
   }
 
