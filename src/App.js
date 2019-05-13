@@ -17,6 +17,7 @@ class App extends Component {
       correctAnswer: 0,
       question: "",
       code: "",
+      countdown: 0,
     }
     this.setPrompt = this.setPrompt.bind( this );
     this.nextPrompt = this.nextPrompt.bind( this );
@@ -57,6 +58,16 @@ class App extends Component {
     return colors;
   }
 
+  promptCountdown( countdown ) {
+    if( countdown === 0 ) {
+      this.nextPrompt();
+    }
+    else {
+      this.setState( { countdown: this.state.countdown - 1 } );
+      setTimeout( () => { this.promptCountdown( countdown - 1 ) }, 1000 );
+    }
+  }
+
   nextPrompt() {
     if( this.state.promptIndex < prompts.length - 1 ) {
       this.setPrompt( this.state.promptIndex + 1 );
@@ -78,7 +89,8 @@ class App extends Component {
       });
     }
     if( this.state.promptIndex < prompts.length - 1 ) {
-      setTimeout( this.nextPrompt, 3000 );
+      this.setState( { countdown: 5 } );
+      setTimeout( () => { this.promptCountdown( 5 ) }, 1000 );
     }
   }
 
@@ -93,18 +105,21 @@ class App extends Component {
           <SyntaxHighlighter language='javascript' style={dark}>{this.state.code}</SyntaxHighlighter>
         </div>
         <footer className="container">
-        <div className="row">
-          <div className="col m12 question">
-            {this.state.question}
+          <div className="row">
+            <div className="col m12 question">
+              {this.state.question}
+            </div>
           </div>
-        </div>
-        <div className="row">
-          <button className={"btn col m6 " + this.state.buttonColor[0]} onClick={() => this.answerClicked(0)}>{this.state.answers[0]}</button>
-          <button className={"btn col m6 " + this.state.buttonColor[1]} onClick={() => this.answerClicked(1)}>{this.state.answers[1]}</button>
-          <button className={"btn col m6 " + this.state.buttonColor[2]} onClick={() => this.answerClicked(2)}>{this.state.answers[2]}</button>
-          <button className={"btn col m6 " + this.state.buttonColor[3]} onClick={() => this.answerClicked(3)}>{this.state.answers[3]}</button>
-        </div>
+          <div className="row">
+            <button className={"btn col m6 " + this.state.buttonColor[0]} onClick={() => this.answerClicked(0)}>{this.state.answers[0]}</button>
+            <button className={"btn col m6 " + this.state.buttonColor[1]} onClick={() => this.answerClicked(1)}>{this.state.answers[1]}</button>
+            <button className={"btn col m6 " + this.state.buttonColor[2]} onClick={() => this.answerClicked(2)}>{this.state.answers[2]}</button>
+            <button className={"btn col m6 " + this.state.buttonColor[3]} onClick={() => this.answerClicked(3)}>{this.state.answers[3]}</button>
+          </div>
         </footer>
+        <div className="countdown">
+          {this.state.countdown}
+        </div>
       </div>
     );
   }
