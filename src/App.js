@@ -38,6 +38,7 @@ class App extends Component {
         correctAnswer: prompts[newIndex].correctAnswer,
         buttonColor: ['cyan','cyan','cyan','cyan'],
         question: "What's wrong here?",
+        countdown: 10,
       });
     }
   }
@@ -81,16 +82,17 @@ class App extends Component {
         question: "That's right!",
         numCorrect: this.state.numCorrect + 1,
         buttonColor: colors,
+        countdown: 3,
       });
     }
     else {
       this.setState( {
         question: "Nope!",
         buttonColor: colors,
+        countdown: 3,
       });
     }
     if( this.state.promptIndex < prompts.length - 1 ) {
-      this.setState( { countdown: 3 } );
       setTimeout( () => { this.promptCountdown( 3 ) }, 1000 );
     }
   }

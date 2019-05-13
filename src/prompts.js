@@ -1,6 +1,5 @@
 export const prompts = [
     {
-        image: 'screenshot0.png',
         code: "render()\n  return (\n    <div className='App'>\n      Hello, world\n    </div>\n  );\n}",
         answers: [
             'Needs to add a curly brace',
@@ -11,15 +10,24 @@ export const prompts = [
         correctAnswer: 0,
     },
     {
-        image: 'screenshot1.png',
         code: "employee = {\n  firstName: 'Alan',\n  lastName: 'Davies'\n  phoneNumber: '301-248-9325',\n  birthDate: '1972-03-28'\n}",
         answers: [
             'Needs to close a curly brace',
             'Too many closing curly braces',
             'Needs comma',
-            'Should be setState() instead of this.state =',
+            'Wrong syntax for assignment',
         ],
         correctAnswer: 2,
+    },
+    {
+        code: "employee = {\n  firstName: 'Alan',\n  lastName: 'Davies',\n  phoneNumber: '301-248-9325',\n  birthDate; '1972-03-28'\n}",
+        answers: [
+            'Needs to close a curly brace',
+            'Uses semicolon instead of colon',
+            'Needs comma',
+            'Wrong syntax for assignment',
+        ],
+        correctAnswer: 1,
     },
 ];
 
