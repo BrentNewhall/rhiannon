@@ -18,6 +18,8 @@ class App extends Component {
       question: "",
       code: "",
       countdown: 0,
+      numCorrect: 0,
+      numTried: 0,
     }
     this.setPrompt = this.setPrompt.bind( this );
     this.nextPrompt = this.nextPrompt.bind( this );
@@ -79,6 +81,7 @@ class App extends Component {
     if( answer === this.state.correctAnswer ) {
       this.setState( {
         question: "That's right!",
+        numCorrect: this.state.numCorrect + 1,
         buttonColor: colors,
       });
     }
@@ -117,6 +120,9 @@ class App extends Component {
             <button className={"btn col m6 " + this.state.buttonColor[3]} onClick={() => this.answerClicked(3)}>{this.state.answers[3]}</button>
           </div>
         </footer>
+        <div className="score">
+          <span className="correct">{this.state.numCorrect}</span> / {prompts.length} <span className="percentCorrect">({parseInt(this.state.numCorrect / prompts.length * 100)}%)</span>
+        </div>
         <div className="countdown">
           {this.state.countdown}
         </div>
