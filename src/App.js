@@ -28,7 +28,7 @@ class App extends Component {
     if( newIndex >= 0  &&  newIndex < prompts.length ) {
       this.setState( {
         promptIndex: newIndex,
-        screenshot: '/images/screenshots/' + prompts[newIndex].image,
+        screenshot: 'images/screenshots/' + prompts[newIndex].image,
         answers: prompts[newIndex].answers,
         correctAnswer: prompts[newIndex].correctAnswer,
         buttonColor: ['cyan','cyan','cyan','cyan'],
